@@ -1,0 +1,165 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Asoriba.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:drawerLayout="clr-namespace:DrawerLayout;assembly=DrawerLayout"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <Grid x:Name="TitleBar"  Grid.Row ="0" Background="#FF1F0F8D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="5"  x:Name="DrawerIcon"  Grid.Column="0" Source="/Assets/ic_drawer.png" HorizontalAlignment="Left" Tap="DrawerIcon_Tapped" />
+            <TextBlock Grid.Column="1" Text="News Feeds" Foreground="White" VerticalAlignment="Center" FontSize="22"/>
+        </Grid>
+
+        <drawerLayout:DrawerLayout Grid.Row="1"  x:Name="DrawerLayout">
+            <Grid x:Name="MainFragment" Background="White">
+                <phone:LongListSelector  Name="feedList">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Height="600" Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding ImageUri}"  Height="300" Stretch="UniformToFill" Width="Auto"/>
+                                    <TextBlock Text="{Binding Title}" Foreground="Black" FontFamily="Arial" FontSize="24"  Height="60" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Type}"  Foreground="Black" FontFamily="Arial" FontSize="20" FontWeight="Bold" Height="40"/>
+                                    <TextBlock Text="{Binding Message}"  Foreground="Black" FontFamily="Calibri Light" FontSize="20"  Height="395" TextWrapping="Wrap"/>
+                                    <Border BorderBrush="#FF0C053C" BorderThickness="0,0,0,5" CornerRadius="0" />
+                                </StackPanel>
+                                <!--<StackPanel Height="100" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" Foreground="#FF171515" />
+                                </StackPanel>-->
+
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+
+                </phone:LongListSelector>
+
+            </Grid>
+
+            <Grid x:Name="ListFragment" Background="#FF0C053C">
+
+                <ScrollViewer>
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="MenuIdentity" Grid.Row="0" Height="200">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/Assets/nav_image.jpg" Stretch="UniformToFill"/>
+                            </Grid.Background>
+                            <StackPanel  Orientation="Vertical">
+                                <!--<Image Source="/Assets/bart.jpg" Height="131" Stretch="UniformToFill" Margin="50,0,293,0" />-->
+                                <TextBlock x:Name="FullName" Foreground="#FFF7F2F2"  FontSize="20" TextWrapping="Wrap" Margin="10,150,0,164" Height="56"  >
+                                	<Run Text="Join your Church                                             "/>
+                                	<LineBreak/>
+                                	<Run Text="Register to Edit your Profile"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <!--<Grid x:Name="MenuActions" Background="Transparent" Grid.Row="1">
+                            <Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />
+                            <StackPanel Margin="10 10 0 5" VerticalAlignment="Bottom">
+
+                                <TextBlock Text="MENU" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="16" FontWeight="SemiBold" Width="140" />
+                            </StackPanel>
+                        </Grid>-->
+
+                        <Grid x:Name="Item1" Background="Transparent" Grid.Row="1" Tap="Item_Tapped">
+                            <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
+                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
+                                <TextBlock Text="Join Your Church" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            </StackPanel>
+                        </Grid>
+
+
+                        <Grid x:Name="Item2" Background="Transparent" Grid.Row="2" Tap="Item_Tapped">
+                            <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
+                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
+                                <TextBlock Text="About Asoriba" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid x:Name="Item3" Background="Transparent" Grid.Row="3" Tap="Item_Tapped">
+                            <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
+                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
+                                <TextBlock Text="Settings" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+
+                </ScrollViewer>
+
+            </Grid>
+
+        </drawerLayout:DrawerLayout>
+
+        <!--ContentPanel - place additional content here-->
+        <!--
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+        </Grid>-->
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+    <toolkit:WaitCursorService.WaitCursor>
+        <toolkit:WaitCursor x:Name="WaitIndicator" Text="Please wait...Loading Feeds"/>
+    </toolkit:WaitCursorService.WaitCursor>
+</phone:PhoneApplicationPage>
