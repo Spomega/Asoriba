@@ -32,10 +32,12 @@ namespace Asoriba
                 //request server url
                 String url = AsoribaConstants.server_url_test + AsoribaConstants.VERIFY;
 
+                MessageBox.Show("phone number " + Register.phonenumber);
                 //add request parameters
                 var parameters = new List<KeyValuePair<String, String>>{
                 new KeyValuePair<String,String>("device","windows"),
-                new KeyValuePair<String,String>("app_id",txtSecretCode.Text)
+                new KeyValuePair<String,String>("token",txtSecretCode.Text),
+                new KeyValuePair<String,String>("phone_no",Register.phonenumber)
             };
 
 

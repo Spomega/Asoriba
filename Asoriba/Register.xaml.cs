@@ -13,6 +13,8 @@ namespace Asoriba
 {
     public partial class Register : PhoneApplicationPage
     {
+
+        public static string phonenumber = string.Empty;
         public Register()
         {
             InitializeComponent();
@@ -34,10 +36,11 @@ namespace Asoriba
                 var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(6) };
                 //request server url
                 String url = AsoribaConstants.server_url_test + AsoribaConstants.SIGNUP;
-
+                phonenumber = "+"+txtCountryCode.Text+txtPhonenumber.Text;
+                MessageBox.Show("phone number " + phonenumber); 
                 //add request parameters
                 var parameters = new List<KeyValuePair<String, String>>{
-                new KeyValuePair<String,String>("phone_no","+"+txtCountryCode.Text+txtPhonenumber.Text),
+                new KeyValuePair<String,String>("phone_no",phonenumber),
                 new KeyValuePair<String,String>("app_id","")
             };
                
