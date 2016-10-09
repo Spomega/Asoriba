@@ -81,7 +81,7 @@ namespace Asoriba
                         MessageBox.Show("phone number " + Register.phonenumber);
                         //add request parameters
                         var parameters = new List<KeyValuePair<String, String>>{
-                new KeyValuePair<String,String>("device","windows"),
+                        new KeyValuePair<String,String>("device","windows"),
                
             };
 

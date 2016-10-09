@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+       xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -41,7 +42,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Width="110" Height="150" Source="{Binding ImageUrl}" VerticalAlignment="Top"/>
+                            <Image Width="110" Height="110" Source="{Binding ImageUrl}" VerticalAlignment="Top"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Top">
                                 <TextBlock Text="{Binding FullName}" Style="{StaticResource PhoneTextLargeStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="12,-12,12,6"/>
                                 <TextBlock Text="{Binding Email}" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
@@ -56,4 +57,15 @@
         </Grid>
     </Grid>
 
+
+    <toolkit:WaitCursorService.WaitCursor>
+        <toolkit:WaitCursor x:Name="WaitIndicator" Text="Please wait......"/>
+    </toolkit:WaitCursorService.WaitCursor>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="AppBarSearch" IconUri="/Toolkit.Content/feature.search.png" Text="find your church" Click="AppBarSearch_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarlibrary" IconUri="/Toolkit.Content/ApplicationBar.Add.png" Text="add your church" Click="AppBarlibrary_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
 </phone:PhoneApplicationPage>

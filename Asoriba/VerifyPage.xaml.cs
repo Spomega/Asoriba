@@ -52,6 +52,7 @@ namespace Asoriba
                     {
                         timer.Stop();
                         WaitIndicator.IsVisible = false;
+                        NavigationService.Navigate(new Uri("/FindChurchPage.xaml", UriKind.Relative));
                         //parseJSONResponse(response);
                     }
                     else
