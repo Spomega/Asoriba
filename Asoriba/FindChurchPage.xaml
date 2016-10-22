@@ -29,27 +29,28 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBlock Grid.Column="1" Text="Enter Secret Code" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="80,26,0,25" FontWeight="Bold" FontFamily="Arial Unicode MS"/>
+            <TextBlock Grid.Column="1" Text="Select Your Church" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="80,26,0,25" FontWeight="Bold" FontFamily="Arial Unicode MS"/>
         </Grid>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:LongListSelector>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Background="#FFF3F0F0">
+            <phone:LongListSelector Name="churchList" SelectionChanged="churchList_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="12,8,0,8" Background="Transparent">
+                    <DataTemplate >
+                        <Grid Margin="10,8,0,8" Background="White" Height="140" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Width="110" Height="110" Source="{Binding ImageUrl}" VerticalAlignment="Top"/>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                                <TextBlock Text="{Binding FullName}" Style="{StaticResource PhoneTextLargeStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="12,-12,12,6"/>
-                                <TextBlock Text="{Binding Email}" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
+                            <Image Width="120" Height="120" Source="{Binding ImageUrl}" VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center"  >
+                                <TextBlock Text="{Binding Church}" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="12,-12,12,6" Foreground="#FF0C0B0B"/>
+                                <TextBlock  Text="{Binding Branch}" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilySemiBold}"  Foreground="#FF0C0B0B"/>
                               
                             </StackPanel>
+                            
                         </Grid>
-
+                       
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
@@ -62,9 +63,9 @@
         <toolkit:WaitCursor x:Name="WaitIndicator" Text="Please wait......"/>
     </toolkit:WaitCursorService.WaitCursor>
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton x:Name="AppBarSearch" IconUri="/Toolkit.Content/feature.search.png" Text="find your church" Click="AppBarSearch_Click"/>
-            <shell:ApplicationBarIconButton x:Name="AppBarlibrary" IconUri="/Toolkit.Content/ApplicationBar.Add.png" Text="add your church" Click="AppBarlibrary_Click"/>
+        <shell:ApplicationBar Mode="Default">
+            <shell:ApplicationBarIconButton    x:Name="AppBarSearch" IconUri="/Toolkit.Content/feature.search.png" Text="find your church" Click="AppBarSearch_Click"/>
+            <shell:ApplicationBarIconButton    x:Name="AppBarlibrary" IconUri="/Toolkit.Content/ApplicationBar.Add.png" Text="add your church" Click="AppBarlibrary_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

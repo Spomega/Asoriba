@@ -15,6 +15,7 @@ namespace Asoriba
         public static string SIGNUP = "mobile/users/signup/";
         public static string VERIFY = "mobile/users/verify/";
         public static string FIND_CHURCH = "mobile/users/follower/find_church/";
+        public static string ADD_CHURCH = "mobile/users/follower/generate_lead/";
         public static readonly string ERROR_MESSAGE = "Sorry Could Not Access Server,Please Check Your Internet Connection";
 
 

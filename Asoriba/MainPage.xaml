@@ -114,25 +114,25 @@
                             </StackPanel>
                         </Grid>-->
 
-                        <Grid x:Name="Item1" Background="Transparent" Grid.Row="1" Tap="Item_Tapped">
+                        <Grid x:Name="Item1" Background="Transparent" Grid.Row="1" Tap="Item_Tapped" Height="80">
                             <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
-                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
-                                <TextBlock Text="Join Your Church" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            <StackPanel Margin="20,24,0,20" VerticalAlignment="Center" Height="36">
+                                <TextBlock Text="Join Your Church" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" Height="34" Width="151" />
                             </StackPanel>
                         </Grid>
 
 
-                        <Grid x:Name="Item2" Background="Transparent" Grid.Row="2" Tap="Item_Tapped">
+                        <Grid x:Name="Item2" Background="Transparent" Grid.Row="2" Tap="Item_Tapped" Height="80">
                             <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
-                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
-                                <TextBlock Text="About Asoriba" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Center">
+                                <TextBlock Text="About Asoriba" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" Height="31" />
                             </StackPanel>
                         </Grid>
 
-                        <Grid x:Name="Item3" Background="Transparent" Grid.Row="3" Tap="Item_Tapped">
+                        <Grid x:Name="Item3" Background="Transparent" Grid.Row="3" Tap="Item_Tapped" Height="80">
                             <!--<Border BorderBrush="#FFE0E0E0" BorderThickness="0 0 0 1" />-->
-                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Bottom">
-                                <TextBlock Text="Settings" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" />
+                            <StackPanel Margin="20 10 0 5" VerticalAlignment="Center">
+                                <TextBlock Text="Settings" Foreground="White"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="20" Height="37" Width="72" />
                             </StackPanel>
                         </Grid>
 

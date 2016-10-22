@@ -1,4 +1,4 @@
-﻿using System;
+﻿   using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,6 +13,8 @@ namespace Asoriba
 {
     public partial class FindChurchPage : PhoneApplicationPage
     {
+
+        public static string chu = null;
         public FindChurchPage()
         {
             InitializeComponent();
@@ -76,17 +78,17 @@ namespace Asoriba
                         WaitIndicator.IsVisible = true;
                         var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(6) };
                         //request server url
-                        String url = AsoribaConstants.server_url_test + AsoribaConstants.FIND_CHURCH;
+                        String url = AsoribaConstants.server_url_test + AsoribaConstants.FIND_CHURCH+"?value="+ph.Text;
 
-                        MessageBox.Show("phone number " + Register.phonenumber);
+                      
                         //add request parameters
-                        var parameters = new List<KeyValuePair<String, String>>{
-                        new KeyValuePair<String,String>("device","windows"),
+                       // var parameters = new List<KeyValuePair<String, String>>{
+                       // new KeyValuePair<String,String>("value",ph.Text),
                
-            };
+                       //};
 
 
-                        String response = await Util.httpHelperPost(url, parameters);
+                        String response = await Util.httpHelperGetWithToken(url);
                         MessageBox.Show("response " + response);
 
 
@@ -97,7 +99,7 @@ namespace Asoriba
                             {
                                 timer.Stop();
                                 WaitIndicator.IsVisible = false;
-                                //parseJSONResponse(response);
+                                parseJSONResponse(response);
                             }
                             else
                             {
@@ -119,9 +121,51 @@ namespace Asoriba
 
         }
 
+        private void parseJSONResponse(string response)
+        {
+            try
+            {
+                RootObject returnObject = SimpleJson.DeserializeObject<RootObject>(response);
+
+                if(returnObject.results.branch_info.Count>0)
+                {
+                    List<Churches> chs = new List<Churches>();
+
+                    foreach(BranchInfo b in returnObject.results.branch_info)
+                    {
+                        chs.Add(new Churches() {ImageUrl = "Assets/1.jpg",Church=b.church.church_name,Branch=b.branch_name});
+                    }
+
+                    churchList.ItemsSource = chs;
+
+
+                }
+                else
+                {
+                    List<Churches> chs = new List<Churches>();
+
+                    foreach (BranchInfo b in returnObject.results.branch_info)
+                    {
+                        chs.Add(new Churches() { ImageUrl = "", Church = "Church is not available"});
+                    }
+
+                    churchList.ItemsSource = chs;
+
+                   // MessageBox.Show("Cannot Find Your Church");
+                }
+        
+
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(AsoribaConstants.ERROR_MESSAGE);
+            }
+         
+        }
+
         private void AppBarlibrary_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/JoinChurchPage.xaml", UriKind.Relative));
         }
 
 
@@ -152,6 +196,21 @@ namespace Asoriba
         public class RootObject
         {
             public Results results { get; set; }
+        }
+
+        private void churchList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Churches ch = (Churches) churchList.SelectedItem;
+            chu = ch.Church;
+            NavigationService.Navigate(new Uri("/UserPage.xaml", UriKind.Relative));
+            refreshList();
+        }
+
+
+
+        public void refreshList()
+        {
+            churchList.SelectedItem = null;
         }
     }
 }
